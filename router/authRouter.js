@@ -90,7 +90,7 @@ authRouter
     console.log(req.user);
     console.log("data recieved from server");
     console.log("user authenticated");
-    res.redirect("https://sociogram.netlify.app");
+    res.redirect("https://sociogram.netlify.app/login");
   });
 
 // by react app
