@@ -2,10 +2,8 @@ const authRouter = require("express").Router();
 let passport = require("passport");
 let GoogleStrategy = require("passport-google-oauth2").Strategy;
 // let { CLIENT_ID, CLIENT_PSWD } = require("../config/secrets");
-let { CLIENT_ID, CLIENT_PSWD } = process.env ;
+let { CLIENT_ID, CLIENT_PSWD } = process.env;
 let connection = require("../model/db");
-
-let { googleAuth } = require("../controller/authController");
 
 passport.serializeUser(function (user, done) {
   console.log("inside serailize user !!");
@@ -80,7 +78,10 @@ authRouter
   .route("/google")
   .get(
     passport.authenticate("google", { scope: ["email", "profile"] }),
-    googleAuth
+    (req, res) => {
+      console.log("Inside o Auth");
+      res.send("<h1>GOOGLE CONSENT FORM !!</h1>");
+    }
   );
 
 //called by google server
@@ -90,7 +91,7 @@ authRouter
     console.log(req.user);
     console.log("data recieved from server");
     console.log("user authenticated");
-    res.redirect("https://sociogram.netlify.app/login");
+    res.redirect("https://sociogram.netlify.app");
   });
 
 // by react app
@@ -107,6 +108,13 @@ authRouter.route("/setState").get(function (req, res) {
       uid: "",
     });
   }
+});
+
+authRouter.route("/destroyCookie").get(function (req, res) {
+  req.session = null;
+  res.json({
+    messaged: "LOGGED OUT",
+  });
 });
 
 module.exports = authRouter;

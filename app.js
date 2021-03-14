@@ -18,7 +18,7 @@ app.use(express.static("public"));
 //added for auth and cookies creation
 app.use(
   cookie({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
+    maxAge: 24 * 60 * 60 * 1000,
     keys: ["key1"],
   })
 );
