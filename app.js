@@ -20,7 +20,6 @@ app.use(
   cookie({
     maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: ["key1"],
-    secure: process.env.ENV === "PRODUCTION",
   })
 );
 // app.use(session({ secret: 'anything' }));
