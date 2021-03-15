@@ -2,7 +2,8 @@ const authRouter = require("express").Router();
 let passport = require("passport");
 let GoogleStrategy = require("passport-google-oauth2").Strategy;
 // let { CLIENT_ID, CLIENT_PSWD } = require("../config/secrets");
-let { CLIENT_ID, CLIENT_PSWD } = process.env;
+let CLIENT_ID = process.env.CLIENT_ID,
+  CLIENT_PSWD = process.env.CLIENT_PSWD;
 let connection = require("../model/db");
 
 passport.serializeUser(function (user, done) {

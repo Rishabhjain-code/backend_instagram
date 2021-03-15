@@ -1,6 +1,9 @@
 const mysql = require("mysql");
 // const { HOST, USER, PASSWORD, DB_NAME } = require("../config/secrets");
-const { HOST, USER, PASSWORD, DB_NAME } = process.env;
+const HOST = process.env.HOST,
+  USER = process.env.USER,
+  PASSWORD = process.env.PASSWORD,
+  DB_NAME = process.env.DB_NAME;
 
 //database connection
 
@@ -22,9 +25,9 @@ connection.connect();
 //   database: DB_NAME,
 // });
 
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+connection.query("SELECT 1 + 1 AS solution", function (error, results, fields) {
   if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
+  console.log("The solution is: ", results[0].solution);
 });
 
 // console.log("DB Connected !!");
