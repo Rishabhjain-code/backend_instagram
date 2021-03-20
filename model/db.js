@@ -9,21 +9,21 @@ const HOST = process.env.HOST,
 
 // breaks on no use
 
-const connection = mysql.createConnection({
-  host: HOST,
-  user: USER,
-  password: PASSWORD,
-  database: DB_NAME,
-});
-connection.connect();
-
-// const connection = mysql.createPool({
-//   connectionLimit: 200,
+// const connection = mysql.createConnection({
 //   host: HOST,
 //   user: USER,
 //   password: PASSWORD,
 //   database: DB_NAME,
 // });
+// connection.connect();
+
+const connection = mysql.createPool({
+  connectionLimit: 200,
+  host: HOST,
+  user: USER,
+  password: PASSWORD,
+  database: DB_NAME,
+});
 
 connection.query("SELECT 1 + 1 AS solution", function (error, results, fields) {
   if (error) throw error;
